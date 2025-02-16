@@ -23,7 +23,8 @@ interface Subject {
   Age: string;
   Conditions: string;
   Squad: string;
-  HealthPercentile: number; // Added field
+  HealthPercentile: number;
+  PhysicalActivityPercentile: number; // Added field
   Vitals: SubjectVitals;
 }
 
@@ -156,6 +157,9 @@ export default function SubjectDetail({ id }: { id: string }) {
         </p>
         <p>
           <strong>Health Percentile:</strong> {subjectData.HealthPercentile.toFixed(2)}
+        </p>
+        <p>
+          <strong>Physical Activity Percentile:</strong> {subjectData.PhysicalActivityPercentile.toFixed(2)}
         </p>
         <p className="flex items-center">
           <strong>Status:</strong>{" "}
