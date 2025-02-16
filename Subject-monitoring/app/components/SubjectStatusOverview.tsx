@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Box } from "@mui/material";
-import data from "../../subject-data.json"
+import data from "../../subject-data.json";
 
 type SubjectStatus = "Normal" | "Caution" | "Alert";
 
@@ -14,16 +14,21 @@ interface Subject {
   Conditions: string;
   Status: SubjectStatus;
   Squad: string;
+  HealthPercentile: number;
 }
 
 // Define the JSON response type
 interface SubjectData {
-  Subjects: Record<string, {
-    Name: string;
-    Age: string; // Stored as a string in JSON, needs conversion
-    Conditions: string;
-    Squad: string;
-  }>;
+  Subjects: Record<
+    string,
+    {
+      Name: string;
+      Age: string; // Stored as a string in JSON, needs conversion
+      Conditions: string;
+      Squad: string;
+      HealthPercentile: number;
+    }
+  >;
 }
 
 export default function SubjectStatusOverview() {
@@ -34,14 +39,17 @@ export default function SubjectStatusOverview() {
     const fetchSubjects = async () => {
       try {
         // Convert object to array and extract required fields
-        const mockSubjects: Subject[] = Object.entries(data.Subjects).map(([id, subject]) => ({
-          id, // Extract ID from key
-          Name: subject.Name,
-          Status: determineStatus(subject.Conditions), // Function to derive status if needed
-          Squad: subject.Squad,
-          Age: Number(subject.Age), // Ensure it's stored as a number
-          Conditions: subject.Conditions,
-        }));
+        const mockSubjects: Subject[] = Object.entries(data.Subjects).map(
+          ([id, subject]) => ({
+            id, // Extract ID from key
+            Name: subject.Name,
+            Status: determineStatus(subject.HealthPercentile), // Determine status based on health percentile
+            Squad: subject.Squad,
+            Age: Number(subject.Age), // Ensure it's stored as a number
+            Conditions: subject.Conditions,
+            HealthPercentile: subject.HealthPercentile, // Include health percentile
+          })
+        );
 
         console.log("Mock Subjects:", mockSubjects); // ✅ Debugging
         setSubjects(mockSubjects);
@@ -55,11 +63,11 @@ export default function SubjectStatusOverview() {
     fetchSubjects();
   }, []);
 
-  // Function to determine status based on conditions (you can modify this logic)
-  const determineStatus = (conditions: string): SubjectStatus => {
-    if (conditions.includes("Heart Disease") || conditions.includes("Critical")) return "Alert";
-    if (conditions.includes("Hypertension") || conditions.includes("Migraines")) return "Caution";
-    return "Normal"; // Default status
+  // Function to determine status based on health percentile
+  const determineStatus = (healthPercentile: number): SubjectStatus => {
+    if (healthPercentile > 0.80) return "Normal";
+    if (healthPercentile >= 0.75) return "Caution";
+    return "Alert";
   };
 
   const getStatusColor = (status: SubjectStatus) => {
@@ -100,7 +108,8 @@ export default function SubjectStatusOverview() {
                 <tr className="bg-gray-200">
                   <th className="p-2 text-left">ID</th>
                   <th className="p-2 text-left">Name</th>
-                  <th className="p-2 text-center font-semibold w-20">Age</th> 
+                  <th className="p-2 text-center font-semibold w-20">Age</th>
+                  <th className="p-2 text-left">Health Percentile</th>
                   <th className="p-2 text-left">Status</th>
                   <th className="p-2 text-left">Action</th>
                 </tr>
@@ -110,13 +119,23 @@ export default function SubjectStatusOverview() {
                   <tr key={subject.id} className="border-b">
                     <td className="p-2">{subject.id}</td>
                     <td className="p-2">{subject.Name}</td>
-                    <td className="p-2 text-center font-normal w-20">{subject.Age}</td> 
+                    <td className="p-2 text-center font-normal w-20">
+                      {subject.Age}
+                    </td>
+                    <td className="p-2">{subject.HealthPercentile.toFixed(2)}</td>
                     <td className="p-2">
-                      <span className={`inline-block w-3 h-3 rounded-full mr-2 ${getStatusColor(subject.Status)}`}></span>
+                      <span
+                        className={`inline-block w-3 h-3 rounded-full mr-2 ${getStatusColor(
+                          subject.Status
+                        )}`}
+                      ></span>
                       {subject.Status}
                     </td>
                     <td className="p-2">
-                      <Link href={`/subject/${subject.id}`} className="text-blue-600 hover:underline">
+                      <Link
+                        href={`/subject/${subject.id}`}
+                        className="text-blue-600 hover:underline"
+                      >
                         View Details
                       </Link>
                     </td>

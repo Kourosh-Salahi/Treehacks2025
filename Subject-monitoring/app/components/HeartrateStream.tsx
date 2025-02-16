@@ -1,81 +1,57 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-const TERRA_WS_URL = "wss://ws.terraapi.io"; // Replace if needed
-const TERRA_API_TOKEN = "temp"; // Replace with your actual API token
-
-const HeartRateStream: React.FC = () => {
-  const [heartRate, setHeartRate] = useState<number | null>(null);
-  const [connected, setConnected] = useState<boolean>(false);
+export default function BackfillData() {
+  const [data, setData] = useState<any | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const socket = new WebSocket(TERRA_WS_URL);
-    let heartbeatInterval: NodeJS.Timeout;
+    const fetchData = async () => {
+      try {
+        const apiUrl = "https://9863-68-65-175-108.ngrok-free.app/backfill";
+        console.log("Fetching data from:", apiUrl);
 
-    socket.addEventListener("open", () => {
-      console.log("✅ Connected to Terra WebSocket");
-      setConnected(true);
+        const response = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
 
-      // Authenticate with Terra
-      const identifyPayload = {
-        op: 3,
-        d: {
-          token: TERRA_API_TOKEN,
-          type: 0,
-        },
-      };
-      socket.send(JSON.stringify(identifyPayload));
-    });
+        // Check content type before parsing
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Invalid response format. Expected JSON.");
+        }
 
-    socket.addEventListener("message", (event) => {
-      const message = JSON.parse(event.data);
-      console.log("📩 Received:", message);
-
-      if (message.op === 2) {
-        // Start Heartbeat
-        const interval = message.d.heartbeat_interval;
-        heartbeatInterval = setInterval(() => {
-          socket.send(JSON.stringify({ op: 0 }));
-        }, interval);
+        // Parse JSON safely
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setError(err instanceof Error ? err.message : "An unknown error occurred.");
+      } finally {
+        setLoading(false);
       }
-
-      if (message.op === 4) {
-        console.log("✅ Authentication Successful");
-      }
-
-      if (message.op === 5 && message.t === "HEART_RATE") {
-        setHeartRate(message.d.val);
-      }
-    });
-
-    socket.addEventListener("close", () => {
-      console.log("❌ Disconnected from Terra WebSocket");
-      setConnected(false);
-    });
-
-    return () => {
-      clearInterval(heartbeatInterval);
-      socket.close();
     };
+
+    fetchData();
   }, []);
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
-    <div className="p-4 border rounded-lg shadow-lg">
-      <h2 className="text-xl font-semibold mb-2">Real-Time Heart Rate</h2>
-      {connected ? (
-        <p className="text-lg">
-          {heartRate !== null ? (
-            <span className="font-bold text-red-600">{heartRate} BPM</span>
-          ) : (
-            "Waiting for data..."
-          )}
-        </p>
+    <div className="max-w-2xl mx-auto p-4">
+      <h1 className="text-xl font-bold mb-4">📡 Live Heart Rate Stream</h1>
+      {data ? (
+        <pre className="bg-gray-100 p-4 rounded shadow">{JSON.stringify(data, null, 2)}</pre>
       ) : (
-        <p className="text-gray-500">🔄 Connecting to Terra...</p>
+        <p>No data available</p>
       )}
     </div>
   );
-};
-
-export default HeartRateStream;
+}

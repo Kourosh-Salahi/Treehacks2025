@@ -15,7 +15,7 @@ export default function Home() {
       </Link>
 
       <Link href="/livestream" className="mt-4 text-blue-600 hover:underline">
-        View Live Heartrate Stream
+        View Connected Heartrate Data
       </Link>
 
       

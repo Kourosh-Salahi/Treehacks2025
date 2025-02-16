@@ -4,7 +4,9 @@
             "Name": "James Smith",
             "Age": "35",
             "Conditions": "N/A",
-            "Squad": "NONE",
+            "Squad": "Alpha",
+            "HealthPercentile": 0.9570172582220775,
+            "PhysicalActivityPercentile": 0.2520812520812521,
             "Vitals": {
                 "HeartRate": [
                     59.28853754940712,
@@ -113,7 +115,9 @@
             "Name": "Robert Johnson",
             "Age": "21",
             "Conditions": "N/A",
-            "Squad": "NONE",
+            "Squad": "Alpha",
+            "HealthPercentile": 0.7297297297297297,
+            "PhysicalActivityPercentile": 0.1381951381951382,
             "Vitals": {
                 "HeartRate": [
                     72.81553398058253,
@@ -242,7 +246,9 @@
             "Name": "Michael Williams",
             "Age": "35",
             "Conditions": "N/A",
-            "Squad": "NONE",
+            "Squad": "Alpha",
+            "HealthPercentile": 0.7342885053728427,
+            "PhysicalActivityPercentile": 0.37129537129537127,
             "Vitals": {
                 "HeartRate": [
                     76.53061224489795,
@@ -371,7 +377,9 @@
             "Name": "David Brown",
             "Age": "34",
             "Conditions": "N/A",
-            "Squad": "NONE",
+            "Squad": "Gamma",
+            "HealthPercentile": 0.9993487463366981,
+            "PhysicalActivityPercentile": 0.06660006660006661,
             "Vitals": {
                 "HeartRate": [
                     61.72839506172839,
@@ -465,7 +473,9 @@
             "Name": "Richard Jones",
             "Age": "26",
             "Conditions": "N/A",
-            "Squad": "NONE",
+            "Squad": "Gamma",
+            "HealthPercentile": 0.8251383914034517,
+            "PhysicalActivityPercentile": 0.3866133866133866,
             "Vitals": {
                 "HeartRate": [
                     52.26480836236934,
@@ -581,7 +591,9 @@
             "Name": "Charles Garcia",
             "Age": "24",
             "Conditions": "N/A",
-            "Squad": "NONE",
+            "Squad": "Gamma",
+            "HealthPercentile": 0.7837837837837838,
+            "PhysicalActivityPercentile": 0.07059607059607059,
             "Vitals": {
                 "HeartRate": [
                     67.56756756756756,
@@ -692,6 +704,8 @@
             "Age": "24",
             "Conditions": "N/A",
             "Squad": "NONE",
+            "HealthPercentile": 0.864213611201563,
+            "PhysicalActivityPercentile": 0.049617049617049616,
             "Vitals": {
                 "HeartRate": [
                     58.82352941176471,
@@ -798,6 +812,8 @@
             "Age": "34",
             "Conditions": "N/A",
             "Squad": "NONE",
+            "HealthPercentile": 0.7762943666558124,
+            "PhysicalActivityPercentile": 0.09756909756909757,
             "Vitals": {
                 "HeartRate": [
                     68.4931506849315,
@@ -917,6 +933,8 @@
             "Age": "31",
             "Conditions": "N/A",
             "Squad": "NONE",
+            "HealthPercentile": 0.8078801693259524,
+            "PhysicalActivityPercentile": 0.053946053946053944,
             "Vitals": {
                 "HeartRate": [
                     63.559322033898304,
