@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
+import data from "../../subject-data.json"
 
 const LineChart = dynamic(() => import("./LineChart"), { ssr: false })
 
@@ -9,7 +10,8 @@ interface SubjectData {
   id: string
   name: string
   age: number
-  category: string
+  conditions: string
+  squad: string
   vitals: {
     heartRate: number[]
     bloodPressure: number[]
@@ -25,11 +27,15 @@ export default function SubjectDetail({ id }: { id: string }) {
     // Simulate API call
     const fetchSubjectData = async () => {
       // In a real application, you would fetch this data from an API
+      
+
+
       const mockSubjectData: SubjectData = {
         id,
         name: "John Doe",
         age: 28,
-        category: "Category A",
+        conditions: "Healthy",
+        squad: "Alpha",
         vitals: {
           heartRate: [70, 72, 75, 73, 71, 74, 76],
           bloodPressure: [120, 122, 118, 121, 119, 123, 120],
@@ -86,7 +92,10 @@ export default function SubjectDetail({ id }: { id: string }) {
           <strong>Age:</strong> {subjectData.age}
         </p>
         <p>
-          <strong>Category:</strong> {subjectData.category}
+          <strong>Conditions:</strong> {subjectData.conditions}
+        </p>
+        <p>
+          <strong>Squad:</strong> {subjectData.squad}
         </p>
       </div>
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8">

@@ -1,0 +1,20 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.8.2
+2 info using node@v20.18.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:c:\Users\kouro\Documents\TreeHacks\Treehacks2025\Subject-monitoring\.npmrc
+5 silly config load:file:C:\Users\kouro\.npmrc
+6 silly config load:file:C:\Users\kouro\Documents\TreeHacks\Treehacks2025\Subject-monitoring\UserskouroAppDataRoamingnpm\etc\npmrc
+7 verbose title npm view @radix-ui/react-accordion description dist-tags.latest homepage version time
+8 verbose argv "view" "--json" "--" "@radix-ui/react-accordion" "description" "dist-tags.latest" "homepage" "version" "time"
+9 verbose logfile logs-max:10 dir:C:\Users\kouro\Documents\TreeHacks\Treehacks2025\Subject-monitoring\UserskouroAppDataRoamingnpm-cache\_logs\2025-02-16T09_36_32_950Z-
+10 verbose logfile C:\Users\kouro\Documents\TreeHacks\Treehacks2025\Subject-monitoring\UserskouroAppDataRoamingnpm-cache\_logs\2025-02-16T09_36_32_950Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 http fetch GET 200 https://registry.npmjs.org/@radix-ui%2freact-accordion 157ms (cache updated)
+14 verbose cwd c:\Users\kouro\Documents\TreeHacks\Treehacks2025\Subject-monitoring
+15 verbose os Windows_NT 10.0.22631
+16 verbose node v20.18.0
+17 verbose npm  v10.8.2
+18 verbose exit 0
+19 info ok

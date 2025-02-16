@@ -1,6 +1,7 @@
 import type React from "react"
 import "./globals.css"
 import { Inter } from "next/font/google"
+import Link from "next/link"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header className="bg-blue-600 text-white p-4">
+          <Link href="/">
           <h1 className="text-2xl font-bold">Subject Monitoring System</h1>
+          </Link>
         </header>
         <main className="container mx-auto p-4">{children}</main>
       </body>
