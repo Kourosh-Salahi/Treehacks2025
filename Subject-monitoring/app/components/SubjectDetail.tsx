@@ -1,60 +1,60 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import dynamic from "next/dynamic"
-import data from "../../subject-data.json"
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import data from "../../subject-data.json";
 
-const LineChart = dynamic(() => import("./LineChart"), { ssr: false })
+const LineChart = dynamic(() => import("./LineChart"), { ssr: false });
 
-interface SubjectData {
-  id: string
-  name: string
-  age: number
-  conditions: string
-  squad: string
-  vitals: {
-    heartRate: number[]
-    bloodPressure: number[]
-    oxygenSaturation: number[]
-  }
+interface SubjectVitals {
+  HeartRate: number[];
+  Green: number[];
+  Red: number[];
+  IR: number[];
+  "X-acceleration": number[];
+  "Y-acceleration": number[];
+  "Z-acceleration": number[];
 }
 
+interface Subject {
+  Name: string;
+  Age: string;
+  Conditions: string;
+  Squad: string;
+  Vitals: SubjectVitals;
+}
+
+interface SubjectsData {
+  [key: string]: Subject;
+}
+
+const subjects: SubjectsData = data.Subjects;
+
 export default function SubjectDetail({ id }: { id: string }) {
-  const [subjectData, setSubjectData] = useState<SubjectData | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [subjectData, setSubjectData] = useState<Subject | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate API call
     const fetchSubjectData = async () => {
-      // In a real application, you would fetch this data from an API
-      
+      const subject = subjects[id];
 
-
-      const mockSubjectData: SubjectData = {
-        id,
-        name: "John Doe",
-        age: 28,
-        conditions: "Healthy",
-        squad: "Alpha",
-        vitals: {
-          heartRate: [70, 72, 75, 73, 71, 74, 76],
-          bloodPressure: [120, 122, 118, 121, 119, 123, 120],
-          oxygenSaturation: [98, 97, 98, 99, 98, 97, 98],
-        },
+      if (!subject) {
+        setSubjectData(null);
+      } else {
+        setSubjectData(subject);
       }
-      setSubjectData(mockSubjectData)
-      setIsLoading(false)
-    }
+      setIsLoading(false);
+    };
 
-    fetchSubjectData()
-  }, [id])
+    fetchSubjectData();
+  }, [id]);
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (!subjectData) {
-    return <div>Subject not found</div>
+    return <div>Subject not found</div>;
   }
 
   const chartData = {
@@ -62,46 +62,76 @@ export default function SubjectDetail({ id }: { id: string }) {
     datasets: [
       {
         label: "Heart Rate",
-        data: subjectData.vitals.heartRate,
+        data: subjectData.Vitals.HeartRate,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
+        hidden: false, // Heart Rate is visible by default
       },
       {
-        label: "Blood Pressure",
-        data: subjectData.vitals.bloodPressure,
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        label: "Green",
+        data: subjectData.Vitals.Green,
+        borderColor: "rgb(0, 255, 0)",
+        backgroundColor: "rgba(0, 255, 0, 0.5)",
+        hidden: true, // Initially hidden
       },
       {
-        label: "Oxygen Saturation",
-        data: subjectData.vitals.oxygenSaturation,
+        label: "Red",
+        data: subjectData.Vitals.Red,
+        borderColor: "rgb(255, 0, 0)",
+        backgroundColor: "rgba(255, 0, 0, 0.5)",
+        hidden: true, // Initially hidden
+      },
+      {
+        label: "IR",
+        data: subjectData.Vitals.IR,
+        borderColor: "rgb(128, 0, 128)",
+        backgroundColor: "rgba(128, 0, 128, 0.5)",
+        hidden: true, // Initially hidden
+      },
+      {
+        label: "X-Acceleration",
+        data: subjectData.Vitals["X-acceleration"],
+        borderColor: "rgb(0, 0, 255)",
+        backgroundColor: "rgba(0, 0, 255, 0.5)",
+        hidden: true, // Initially hidden
+      },
+      {
+        label: "Y-Acceleration",
+        data: subjectData.Vitals["Y-acceleration"],
+        borderColor: "rgb(255, 165, 0)",
+        backgroundColor: "rgba(255, 165, 0, 0.5)",
+        hidden: true, // Initially hidden
+      },
+      {
+        label: "Z-Acceleration",
+        data: subjectData.Vitals["Z-acceleration"],
         borderColor: "rgb(75, 192, 192)",
         backgroundColor: "rgba(75, 192, 192, 0.5)",
+        hidden: true, // Initially hidden
       },
     ],
-  }
+  };
 
   return (
     <div className="w-full max-w-4xl">
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h3 className="text-xl font-bold mb-4">{subjectData.name}</h3>
+        <h3 className="text-xl font-bold mb-4">{subjectData.Name}</h3>
         <p>
-          <strong>ID:</strong> {subjectData.id}
+          <strong>ID:</strong> {id}
         </p>
         <p>
-          <strong>Age:</strong> {subjectData.age}
+          <strong>Age:</strong> {subjectData.Age}
         </p>
         <p>
-          <strong>Conditions:</strong> {subjectData.conditions}
+          <strong>Conditions:</strong> {subjectData.Conditions}
         </p>
         <p>
-          <strong>Squad:</strong> {subjectData.squad}
+          <strong>Squad:</strong> {subjectData.Squad}
         </p>
       </div>
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8">
         <LineChart data={chartData} />
       </div>
     </div>
-  )
+  );
 }
-

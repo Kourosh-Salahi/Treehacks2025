@@ -1,0 +1,114 @@
+{
+    "Subjects": {
+        "1": {
+            "Name": "John Doe",
+            "Age": "26",
+            "Conditions": "N/A",
+            "Squad": "Alpha",
+            "Vitals": {
+                "HeartRate": [70, 72, 75, 73, 71, 74, 76],
+                "BloodPressure": [120, 122, 118, 121, 119, 123, 120],
+                "OxygenSaturation": [98, 97, 98, 99, 98, 97, 98]
+            }
+        },
+        "2": {
+            "Name": "Jane Smith",
+            "Age": "30",
+            "Conditions": "Hypertension",
+            "Squad": "Beta",
+            "Vitals": {
+                "HeartRate": [78, 80, 79, 77, 76, 78, 79],
+                "BloodPressure": [140, 138, 142, 139, 137, 141, 140],
+                "OxygenSaturation": [96, 95, 96, 97, 96, 95, 96]
+            }
+        },
+        "3": {
+            "Name": "Mike Johnson",
+            "Age": "35",
+            "Conditions": "Diabetes",
+            "Squad": "Gamma",
+            "Vitals": {
+                "HeartRate": [85, 87, 86, 88, 85, 86, 87],
+                "BloodPressure": [130, 132, 129, 131, 128, 130, 129],
+                "OxygenSaturation": [97, 96, 97, 98, 97, 96, 97]
+            }
+        },
+        "4": {
+            "Name": "Alice Brown",
+            "Age": "29",
+            "Conditions": "Asthma",
+            "Squad": "Alpha",
+            "Vitals": {
+                "HeartRate": [75, 77, 76, 74, 73, 75, 76],
+                "BloodPressure": [118, 120, 117, 119, 118, 121, 119],
+                "OxygenSaturation": [95, 94, 96, 97, 95, 94, 95]
+            }
+        },
+        "5": {
+            "Name": "Robert White",
+            "Age": "40",
+            "Conditions": "N/A",
+            "Squad": "Beta",
+            "Vitals": {
+                "HeartRate": [68, 70, 69, 71, 68, 70, 69],
+                "BloodPressure": [125, 127, 124, 126, 123, 125, 126],
+                "OxygenSaturation": [98, 98, 99, 98, 98, 99, 98]
+            }
+        },
+        "6": {
+            "Name": "Emily Davis",
+            "Age": "33",
+            "Conditions": "Allergies",
+            "Squad": "Gamma",
+            "Vitals": {
+                "HeartRate": [72, 74, 73, 75, 72, 73, 74],
+                "BloodPressure": [122, 124, 121, 123, 120, 122, 123],
+                "OxygenSaturation": [97, 97, 98, 97, 97, 98, 97]
+            }
+        },
+        "7": {
+            "Name": "Daniel Wilson",
+            "Age": "27",
+            "Conditions": "N/A",
+            "Squad": "Alpha",
+            "Vitals": {
+                "HeartRate": [73, 75, 74, 76, 73, 74, 75],
+                "BloodPressure": [119, 121, 118, 120, 117, 119, 120],
+                "OxygenSaturation": [98, 98, 99, 98, 98, 98, 99]
+            }
+        },
+        "8": {
+            "Name": "Sophia Martinez",
+            "Age": "31",
+            "Conditions": "Migraines",
+            "Squad": "Beta",
+            "Vitals": {
+                "HeartRate": [80, 82, 81, 79, 78, 80, 81],
+                "BloodPressure": [135, 137, 134, 136, 133, 135, 136],
+                "OxygenSaturation": [96, 95, 96, 97, 96, 95, 96]
+            }
+        },
+        "9": {
+            "Name": "Matthew Harris",
+            "Age": "28",
+            "Conditions": "Heart Disease",
+            "Squad": "Gamma",
+            "Vitals": {
+                "HeartRate": [90, 92, 91, 93, 90, 91, 92],
+                "BloodPressure": [145, 147, 144, 146, 143, 145, 146],
+                "OxygenSaturation": [95, 94, 95, 96, 95, 94, 95]
+            }
+        },
+        "10": {
+            "Name": "Olivia Thompson",
+            "Age": "34",
+            "Conditions": "N/A",
+            "Squad": "Alpha",
+            "Vitals": {
+                "HeartRate": [70, 72, 71, 73, 70, 71, 72],
+                "BloodPressure": [120, 122, 119, 121, 118, 120, 121],
+                "OxygenSaturation": [98, 97, 98, 98, 98, 97, 98]
+            }
+        }
+    }
+}

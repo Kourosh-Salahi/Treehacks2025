@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic"
 
-const SoldierDetail = dynamic(() => import("../../components/SoldierDetail"), {
+const SoldierDetail = dynamic(() => import("../../components/SubjectDetail"), {
   ssr: false,
 })
 
