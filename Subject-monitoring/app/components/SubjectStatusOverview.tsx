@@ -15,6 +15,7 @@ interface Subject {
   Status: SubjectStatus;
   Squad: string;
   HealthPercentile: number;
+  PhysicalActivityPercentile: number;
 }
 
 // Define the JSON response type
@@ -27,6 +28,7 @@ interface SubjectData {
       Conditions: string;
       Squad: string;
       HealthPercentile: number;
+      PhysicalActivityPercentile: number;
     }
   >;
 }
@@ -48,6 +50,7 @@ export default function SubjectStatusOverview() {
             Age: Number(subject.Age), // Ensure it's stored as a number
             Conditions: subject.Conditions,
             HealthPercentile: subject.HealthPercentile, // Include health percentile
+            PhysicalActivityPercentile: subject.PhysicalActivityPercentile, // Include physical activity percentile
           })
         );
 
@@ -65,7 +68,7 @@ export default function SubjectStatusOverview() {
 
   // Function to determine status based on health percentile
   const determineStatus = (healthPercentile: number): SubjectStatus => {
-    if (healthPercentile > 0.80) return "Normal";
+    if (healthPercentile > 0.87) return "Normal";
     if (healthPercentile >= 0.75) return "Caution";
     return "Alert";
   };
@@ -110,6 +113,7 @@ export default function SubjectStatusOverview() {
                   <th className="p-2 text-left">Name</th>
                   <th className="p-2 text-center font-semibold w-20">Age</th>
                   <th className="p-2 text-left">Health Percentile</th>
+                  <th className="p-2 text-left">Physical Activity</th>
                   <th className="p-2 text-left">Status</th>
                   <th className="p-2 text-left">Action</th>
                 </tr>
@@ -123,6 +127,7 @@ export default function SubjectStatusOverview() {
                       {subject.Age}
                     </td>
                     <td className="p-2">{subject.HealthPercentile.toFixed(2)}</td>
+                    <td className="p-2">{subject.PhysicalActivityPercentile.toFixed(2)}</td>
                     <td className="p-2">
                       <span
                         className={`inline-block w-3 h-3 rounded-full mr-2 ${getStatusColor(
